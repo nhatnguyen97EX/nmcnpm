@@ -18,39 +18,27 @@
         }
     });
     $(document).ready(function () {
-        // var password_signup = document.getElementById("password_signup").value;
-        // password_signup="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
-        // var confirm_password_signup = document.getElementById("confirm_password_signup").value;
-
-        // alert(password_signup +" vaf" +confirm_password_signup);
-
-        // function validatePassword_signup() {
-            // if (password_signup != confirm_password_signup) {
-            //     password_signup.setCustomValidity("Password phải đủ 8 ký tự");
-            // } else {
-            //     confirm_password_signup.setCustomValidity('');
-            // }
-        // }
-        // password_signup.onchange = validatePassword_signup;
-        // confirm_password_signup.onkeyup = validatePassword_signup;
-
         $('#register').click(function (e) {
             e.preventDefault();
+            //Xóa những thông báo trước
             $('.alert-danger').remove();
             $('.alert-success').remove();
+            //tạo ajax kiểm tra thông tin nhập vào
             $.ajax({
                 type: "post",
                 url: "/customer/signup",
-                //Lấy thông tin input
+                //Lấy thông tin input để truyền qua customer/signup kiểm tra
                 data: {
                     last_name: $("input[name=last_name]").val(),
                     first_name: $("input[name=first_name]").val(),
                     email: $("#signupModalCenter input[name=email]").val(),
                     password: $("#signupModalCenter input[name=password]").val(),
+                    confirm_password: $("#signupModalCenter input[name=confirm_password]").val(),
                 },
                 dataType: "json",
+                //Thông báo lỗi alert-danger hoặc thành công alert-success
                 success: function (data) {
-                    if (typeof data.errors !== "undefined") {
+                    if (typeof data.errors != "undefined") {
                         jQuery.each(data.errors, function (key, value) {
                             $('.notify').show();
                             $('.notify').append('<div class="alert error-signup alert-danger"><p>' + value + '</p></div>');
