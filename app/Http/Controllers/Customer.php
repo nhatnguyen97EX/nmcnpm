@@ -66,18 +66,24 @@ class Customer extends Controller
         Auth::logout();
         return redirect('/');
     }
-
+//Đăng ký---------------------------------------------------------------
     public function signup(Request $res)
     {
         //5. Kiểm tra tính hợp lệ của thông tin
         $validator = Validator::make($res->all(), [
-            'email' => 'unique:users',
             'last_name' => 'required',
             'first_name' => 'required',
+        	'email' => 'unique:users|required|email',
+        	'password' => 'required|min:8',
+        	'confirm_password' => 'required|same:password',
         ],
             [
                 'unique' => ':attribute đã tồn tại',
-//                'require' => ':attribute d',
+            	'email' => ':attribute không đúng định dạng',
+                'required' => ':attribute không được bỏ trống',
+            	'min' => ':attribute phải ít nhất 8 kí tự',
+           		'same' => ':attribute phải trùng khớp với password',
+            	
             ]);
         //Thông tin không hợp lệ, hiển thị thông báo lỗi
         if ($validator->fails()) {
@@ -99,7 +105,7 @@ class Customer extends Controller
         if ($this->users->save()) {
             //7.2 Gửi mail xác nhận kích hoạt và thông báo đăng ký thành công
             Mail::to($res->input('email'))->send(new SendMail('Xác nhận thông tin địa chỉ email tại Gemingear.vn', $message));
-            return response()->json(['success' => 'Đăng ký thành công vui lòng kiểm tra email của bạn']);
+            return response()->json(['success' => 'Đăng ký thành công vui lòng kiểm tra email của bạn <a href="https://mail.google.com/mail/u/0/#inbox">Tại đây</a>']);
         } else {
             return response()->json(['success' => 'Đăng ký thất bại! Xin kiểm tra lại']);
         }
