@@ -87,33 +87,29 @@
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Họ và tên đệm</label>
                                 <input type="text" required name="last_name" class="form-control"
-                                       aria-describedby="emailHelp"
                                        placeholder="Họ">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Tên</label>
                                 <input type="text" name="first_name" required class="form-control"
-                                       aria-describedby="emailHelp"
                                        placeholder="Tên">
                             </div>
                         </div>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="exampleInputEmail1">Địa chỉ Email</label>
-                        <input type="email" name="email" class="form-control" aria-describedby="emailHelp"
+                        <input type="email" name="email" class="form-control"
                                placeholder="Địa chỉ Email" required>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="exampleInputEmail1">Mật khẩu</label>
                         <input type="password" name="password" id="password-signup" class="form-control"
-                               aria-describedby="emailHelp"
                                placeholder="Mật khẩu" required>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="exampleInputEmail1">Nhập lại mật khẩu</label>
-                        <input type="password" name="confirm_password-signup" id="confirm_password" class="form-control"
-                               aria-describedby="emailHelp"
-                               placeholder="Nhập lại mật khẩu" required>
+                        <input type="password" name="confirm_password" id="confirm_password-signup" class="form-control"
+                               placeholder="Nhập lại mật khẩu"required>
                     </div>
                     <div class="form-group">
                         <p class="text-center">Tôi đồng ý với Bảo mật và Điều khoản hoạt động của Gemingear.vn</p>
